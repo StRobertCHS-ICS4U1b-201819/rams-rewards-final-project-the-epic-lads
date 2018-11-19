@@ -25,4 +25,4 @@ Website for Rams Rewards administrators.  RR Admins will be able to:
 
 
 
-discord.gg/NCytcfU
+https://discord.gg/NCytcfU
