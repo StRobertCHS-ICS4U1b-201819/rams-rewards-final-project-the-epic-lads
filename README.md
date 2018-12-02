@@ -7,9 +7,6 @@
 
 ------
 
-<br>
-<br>
-
 
 # Development
 
@@ -57,8 +54,6 @@ frontend:
 ------
 
 <br>
-<br>
-
 
 
 # Product Catalog
