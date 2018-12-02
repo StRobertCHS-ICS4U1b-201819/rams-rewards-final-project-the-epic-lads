@@ -27,7 +27,7 @@ Then run it on docer compose :
 
 + If you get a `Permission denied` error using either of the above methods, you probably do not have the proper permissions to run docker. To force the process, prepend `sudo` to either of the above commands and run again, or [change the user group](https://docs.docker.com/install/linux/linux-postinstall/)
 
-+ If you get a `Cannot start containers: port is already allocated` error via runing `docker-compose up --build`, it most likey is some service still runing at same port, try to run `systemctl restart docker`
++ If you get a `Cannot start containers: port is already allocated` error via runing `docker-compose up --build`, it most likey is some service still runing at same port, try to run `systemctl restart docker`to restart docker and build again
 
 + If there is any other errors, feel free to submit it on [github issues](https://github.com/StRobertCHS-ICS4U1b-201819/rams-rewards-final-project-the-epic-lads/issues)
 
