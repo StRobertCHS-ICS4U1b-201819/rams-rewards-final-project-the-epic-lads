@@ -8,53 +8,6 @@
 ------
 
 
-# Development
-
-## Requirement
-+ [install docker](https://docs.docker.com/install/#supported-platforms)
-+ [install docker compose](https://docs.docker.com/compose/install/)
-+ run `docker run hello-world` if no errors, go to next steps.
-
-## build
-Clone this repo and enter it :
-
-    $ git clone https://github.com/StRobertCHS-ICS4U1b-201819/rams-rewards-final-project-the-epic-lads.git
-    $ cd rams-rewards-final-project-the-epic-lads
-
-Then run it on docer compose :
-
-    $ docker-compose up --build
-
-+ If you get a `Permission denied` error using either of the above methods, you probably do not have the proper permissions to run docker. To force the process, prepend `sudo` to either of the above commands and run again, or [change the user group](https://docs.docker.com/install/linux/linux-postinstall/)
-
-+ If you get a `Cannot start containers: port is already allocated` error via runing `docker-compose up --build`, it most likey is some service still runing at same port, try to run `systemctl restart docker`to restart docker and build again
-
-+ If there is any other errors, feel free to submit it on [github issues](https://github.com/StRobertCHS-ICS4U1b-201819/rams-rewards-final-project-the-epic-lads/issues)
-
-
-
-## Edit 
-To run sub-folder, we require different grammar :
-
-    $ docker-compose run [file] [command]
-
-### For example:
-
-backend:
-
-    $ docker-compose run backend python manage.py createsuperuser
-
-frontend:
-
-    $ docker-compose run frontend npm run lint
-
-
-
-
-------
-
-<br>
-
 
 
 # Product Catalog
