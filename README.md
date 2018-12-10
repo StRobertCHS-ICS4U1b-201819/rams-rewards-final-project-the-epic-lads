@@ -5,11 +5,6 @@
 <a href="https://github.com/ambv/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 <a href="https://discord.gg/NCytcfU"><img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg?logo=discord" alt="Chat"></a>
 
-------
-
-
-
-
 # Product Catalog
 
 ## Ram Rewards Student App (RRSA) User Stories
@@ -34,4 +29,3 @@ Website for Rams Rewards administrators.  RR Admins will be able to:
 * Manage list of student accounts (add accounts, remove accounts, edit info)
 * View history of rewards activity.
 * View charts of rewards activity (by date, by activity)
-
