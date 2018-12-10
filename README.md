@@ -5,58 +5,6 @@
 <a href="https://github.com/ambv/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 <a href="https://discord.gg/NCytcfU"><img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg?logo=discord" alt="Chat"></a>
 
-------
-
-
-# Development
-
-## Requirement
-+ [install docker](https://docs.docker.com/install/#supported-platforms)
-+ [install docker compose](https://docs.docker.com/compose/install/)
-+ run `docker run hello-world` if no errors, go to next steps.
-
-## build
-Clone this repo and enter it :
-
-    $ git clone https://github.com/StRobertCHS-ICS4U1b-201819/rams-rewards-final-project-the-epic-lads.git
-    $ cd rams-rewards-final-project-the-epic-lads
-
-Then run it on docer compose :
-
-    $ docker-compose up --build
-
-+ If you get a `Permission denied` error using either of the above methods, you probably do not have the proper permissions to run docker. To force the process, prepend `sudo` to either of the above commands and run again, or [change the user group](https://docs.docker.com/install/linux/linux-postinstall/)
-
-+ If you get a `Cannot start containers: port is already allocated` error via runing `docker-compose up --build`, it most likey is some service still runing at same port, try to run `systemctl restart docker`to restart docker and build again
-
-+ If there is any other errors, feel free to submit it on [github issues](https://github.com/StRobertCHS-ICS4U1b-201819/rams-rewards-final-project-the-epic-lads/issues)
-
-
-
-## Edit 
-To run sub-folder, we require different grammar :
-
-    $ docker-compose run [file] [command]
-
-### For example:
-
-backend:
-
-    $ docker-compose run backend python manage.py createsuperuser
-
-frontend:
-
-    $ docker-compose run frontend npm run lint
-
-
-
-
-------
-
-<br>
-
-
-
 # Product Catalog
 
 ## Ram Rewards Student App (RRSA) User Stories
@@ -81,4 +29,3 @@ Website for Rams Rewards administrators.  RR Admins will be able to:
 * Manage list of student accounts (add accounts, remove accounts, edit info)
 * View history of rewards activity.
 * View charts of rewards activity (by date, by activity)
-
