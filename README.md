@@ -1,6 +1,4 @@
-<a href="https://github.com/vchaptsev/cookiecutter-django-vue">
-<img src="https://img.shields.io/badge/build%20with-Cookiecutter%20Django--Vue-%23D2B300.svg?logo=github"></a>
-<a href="https://vuejs.org/"><img src="https://img.shields.io/badge/frontend-Vue-%2300C583.svg?logo=vue.js"></a>
+<a href="https://vuejs.org/"><img src="https://img.shields.io/badge/frontend-Kivy-%2300C583.svg?logo=vue.js"></a>
 <a href="http://www.djangoproject.com/"><img src="https://img.shields.io/badge/backend-Django-%23003525.svg?logo=django"/></a>
 <a href="https://github.com/ambv/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 <a href="https://discord.gg/NCytcfU"><img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg?logo=discord" alt="Chat"></a>
