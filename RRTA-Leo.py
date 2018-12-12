@@ -16,24 +16,11 @@ Builder.load_string("""
         padding: 27
         spacing: 27
         Button:
-            text: 'Goto settings'
-            on_press: root.manager.current = 'settings'
+            text: 'Scan QR Code'
+            on_press: root.manager.current = 'scanQRcode'
         Button:
             text: "Exit"
             on_press: app.stop() 
-
-<SettingsScreen>:
-    GridLayout:
-        cols: 2
-        rows: 1
-        padding: 27
-        spacing: 27
-        Button:
-            text: 'My settings button'
-            on_press: root.manager.current = 'leo'
-        Button:
-            text: 'Back to menu'
-            on_press: root.manager.current = 'menu'
 
 <ScanQRCodeScreen>:
     GridLayout:
@@ -43,7 +30,7 @@ Builder.load_string("""
         spacing: 27
         Button:
             text: 'scan QR code'
-            on_press: root.manager.current = 'settings'
+            on_press: root.manager.current = 'qrimage'
         Button:
             text: 'Back to menu'
             on_press: root.manager.current = 'menu'
@@ -66,10 +53,6 @@ class MenuScreen(Screen):
     pass
 
 
-class SettingsScreen(Screen):
-    pass
-
-
 class ScanQRCodeScreen(Screen):
     pass
 
@@ -85,8 +68,7 @@ class FullImage(Image):
 # Create the screen manager
 sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
-sm.add_widget(SettingsScreen(name='settings'))
-sm.add_widget(KunScreen(name='leo'))
+sm.add_widget(ScanQRCodeScreen(name='scanQRcode'))
 
 
 class TestApp(App):
