@@ -32,13 +32,13 @@ Builder.load_string("""
 <MenuScreen>:
     FloatLayout:
         Button:
-            text: 'Goto settings'
+            size: (100,100)
+            pos: (100,400)
+            size_hint: (0.5, 0.25)
+            text: 'Rams Rewards Teacher Admin App'
             on_press: root.manager.current = 'settings'
-        Button:
-            text: "Exit"
-            on_press: app.stop() 
 
-<QRScreen>:
+<SettingsScreen>:
     GridLayout:
         cols: 2
         rows: 1
