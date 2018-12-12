@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
+
 Window.clearcolor = (1, 1, 1, 1)
 
 # Create both screens. Please note the root.manager.current: this is how
@@ -34,7 +35,7 @@ Builder.load_string("""
             text: 'Back to menu'
             on_press: root.manager.current = 'menu'
 
-<KunScreen>:
+<ScanQRCodeSCreen>:
     GridLayout:
         cols: 2
         rows: 1
@@ -60,7 +61,7 @@ class SettingsScreen(Screen):
     pass
 
 
-class KunScreen(Screen):
+class scanQRCodeScreen(Screen):
     pass
 
 
@@ -68,7 +69,7 @@ class KunScreen(Screen):
 sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
 sm.add_widget(SettingsScreen(name='settings'))
-sm.add_widget(KunScreen(name='leo'))
+sm.add_widget(scanQRCodeScreen(name='leo'))
 
 
 class TestApp(App):
