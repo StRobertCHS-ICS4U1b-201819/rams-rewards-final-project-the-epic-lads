@@ -39,14 +39,9 @@ Builder.load_string("""
     canvas:
         Color:
             rgb: (1, 1, 1)
-        Rectangle:
-            texture: self.texture
-            size: self.width + 20, self.height + 20
-            pos: self.x - 10, self.y - 10
+        im = Image(source = 'dummyQRCode.png')
+        im.reload()
 """)
-
-
-# Declare both screens
 
 
 class MenuScreen(Screen):
