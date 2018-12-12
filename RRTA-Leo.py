@@ -1,6 +1,8 @@
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.core.window import Window
+Window.clearcolor = (1, 0, 1, 0)
 
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
@@ -10,6 +12,10 @@ Builder.load_string("""
     GridLayout:
         cols: 2
         rows: 1
+
+       
+        padding: 55
+        
         Button:
             text: 'Goto settings'
             on_press: root.manager.current = 'settings'
@@ -33,7 +39,7 @@ Builder.load_string("""
         cols: 2
         rows: 1
         Button:
-            text: 'no u'
+            text: 'scan QR code'
             on_press: root.manager.current = 'settings'
         Button:
             text: 'Back to menu'
