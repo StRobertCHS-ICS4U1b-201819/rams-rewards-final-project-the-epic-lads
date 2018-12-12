@@ -15,7 +15,7 @@ Builder.load_string("""
         padding: 27
         spacing: 27
         Button:
-            text: 'Goto settings'
+            text: 'Go to settings'
             on_press: root.manager.current = 'settings'
         Button:
             text: "Exit"
