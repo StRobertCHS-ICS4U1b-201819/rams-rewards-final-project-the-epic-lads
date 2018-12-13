@@ -30,17 +30,45 @@ Builder.load_string("""
         spacing: 27
         Button:
             text: 'scan QR code'
-            on_press: root.manager.current = 'qrimage'
+            on_press: root.manager.current = 'rewards'
         Button:
             text: 'Back to menu'
-            on_press: root.manager.current = 'menu'
-
-<-FullImage>:
-    canvas:
-        Color:
-            rgb: (1, 1, 1)
-        im = Image(source = 'dummyQRCode.png')
-        im.reload()
+            on_press: root.manager.current = 'back to menu'
+            
+        
+<RewardsScreen>:
+    GridLayout:
+        cols: 3
+        rows: 3
+        font_size: 20
+        Button:
+            text: '1'
+            font_size: 20
+        Button:
+            text: '2'
+            font_size: 20
+        Button:
+            text: '3'
+            font_size: 20
+        Button:
+            text: '4'
+            font_size: 20
+        Button:
+            text: '5'
+            font_size: 20
+        Button:
+            text: '6'
+            font_size: 20
+        Button:
+            text: '7'
+            font_size: 20
+        Button:
+            text: 'Deduct points'
+            font_size: 20
+        Button:
+            text: 'Points Counter'
+            font_size: 20
+     
 """)
 
 
@@ -52,18 +80,17 @@ class ScanQRCodeScreen(Screen):
     pass
 
 
-class FullImage(Image):
+class RewardsScreen(Screen):
     pass
 
-
-#class QrPicScreen(Screen):
-#    pass
 
 
 # Create the screen manager
 sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
 sm.add_widget(ScanQRCodeScreen(name='scanQRcode'))
+
+sm.add_widget(RewardsScreen(name='rewards'))
 
 
 class TestApp(App):
