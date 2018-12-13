@@ -32,7 +32,6 @@ Window.clearcolor = (0, 0.75, 1, 1)
 Builder.load_string("""
 <MenuScreen>:
     FloatLayout:
-        background_color: 0, 0.75, 1, 1
         Button:
             background_color: 0, 0, 0, 0
             size_hint: (1, 1.5)
@@ -40,13 +39,17 @@ Builder.load_string("""
             font_size: 32
         
         Button:
-            size_hint: (1, 0.5)
+            size_hint: (1.5, 0.5)
+            text: 'Quit'
+            font_size: 20
+            on_press: app.stop() 
+            
+        Button:
+            size_hint: (0.5, 0.5)
             text: 'Scan QR Code'
             font_size: 20
             on_press: root.manager.current = 'settings'
             
-            
-
 
 <SettingsScreen>:
     GridLayout:
@@ -58,6 +61,7 @@ Builder.load_string("""
         Button:
             text: 'Back to menu'
             on_press: root.manager.current = 'menu'
+
 
 <LeoScreen>:
     GridLayout:
