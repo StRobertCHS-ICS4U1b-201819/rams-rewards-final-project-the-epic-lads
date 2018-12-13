@@ -13,12 +13,12 @@ Window.clearcolor = (1, 1, 1, 1)
 Builder.load_string("""
 <MenuScreen>:
     GridLayout:
-        cols: 2
+        cols: 3
         rows: 1
         padding: 27
         spacing: 27
         Button:
-            text: 'Rams'
+            text: 'RAMS'
         Button:
             text: 'Scan QR Code'
             on_press: root.manager.current = 'scanQRcode'
