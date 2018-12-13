@@ -1,11 +1,12 @@
 <template>
   <div>
-    <button
-      class="btn btn-primary btn-margin"
+    <md-button class="md-raised md-primary">Primary</md-button>
+    <md-button
+      class="md-raised md-primary"
       v-if="!authenticated"
       @click="login()">
       Log In
-    </button>
+    </md-button>
 
     <button
       class="btn btn-primary btn-margin"
@@ -24,15 +25,14 @@
     <br>
   </div>
 </template>
-
 <script>
 import AuthService from './auth/AuthService'
 import axios from 'axios'
-
 const API_URL = 'http://localhost:8000'
 const auth = new AuthService()
 export default {
   name: 'app',
+  name: 'RegularButtons',
   data () {
     this.handleAuthentication()
     this.authenticated = false
@@ -77,4 +77,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>
