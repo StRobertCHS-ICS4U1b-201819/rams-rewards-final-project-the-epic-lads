@@ -24,13 +24,15 @@ grApp.run()
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
-
+from kivy.core.window import Window
+Window.clearcolor = (0, 0.75, 1, 1)
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
 Builder.load_string("""
 <MenuScreen>:
     FloatLayout:
+        background_color: 0, 0.75, 1, 1
         Button:
             background_color: 0, 0, 0, 0
             size_hint: (1, 1.5)
