@@ -32,11 +32,19 @@ Builder.load_string("""
 <MenuScreen>:
     FloatLayout:
         Button:
-            size: (100,100)
-            pos: (100,400)
-            size_hint: (0.5, 0.25)
+            background_color: 0, 0, 0, 0
+            size_hint: (1, 1.5)
             text: 'Rams Rewards Teacher Admin App'
+            font_size: 32
+        
+        Button:
+            size_hint: (1, 0.5)
+            text: 'Scan QR Code'
+            font_size: 20
             on_press: root.manager.current = 'settings'
+            
+            
+
 
 <SettingsScreen>:
     GridLayout:
