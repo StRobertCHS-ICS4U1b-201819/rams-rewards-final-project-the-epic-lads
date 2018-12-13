@@ -5,9 +5,6 @@ from kivy.core.window import Window
 from kivy.uix.image import Image
 Window.clearcolor = (1, 1, 1, 1)
 
-# Create both screens. Please note the root.manager.current: this is how
-# you can control the ScreenManager from kv. Each screen has by default a
-# property manager that gives you the instance of the ScreenManager used.
 Builder.load_string("""
 <MenuScreen>:
     GridLayout:
@@ -30,45 +27,108 @@ Builder.load_string("""
         spacing: 27
         Button:
             text: 'scan QR code'
-            on_press: root.manager.current = 'rewards'
+            on_press: root.manager.current = 'addsubpoints'
         Button:
             text: 'Back to menu'
-            on_press: root.manager.current = 'back to menu'
+            on_press: root.manager.current = 'menu'
             
-        
-<RewardsScreen>:
+<AddSubScreen>:
+    BoxLayout:
+        Button:
+            text: "Add Points"
+            on_press: root.manager.current = 'calculate'
+        Button:
+            text: "Deduct Points"
+            on_press: root.manager.current = 'subtract'
+
+<CalcGridLayoutScreen>:
+    # Where input is displayed
+    BoxLayout:
+        id: calculator
+        display: entry
+        rows: 5
+        padding: 10
+        spacing: 10
+   
+    BoxLayout:
+        TextInput:
+            id: entry
+            font_size: 32
+            multiline: False
+ 
+    # When buttons are pressed update the entry
     GridLayout:
-        cols: 3
-        rows: 3
-        font_size: 20
+        rows: 5
+        cols: 4
+        spacing: 5
         Button:
-            text: '1'
-            font_size: 20
+            background_color: 0, 0, 0, 0
         Button:
-            text: '2'
-            font_size: 20
+            background_color: 0, 0, 0, 0
         Button:
-            text: '3'
-            font_size: 20
+            background_color: 0, 0, 0, 0
         Button:
-            text: '4'
-            font_size: 20
+            background_color: 0, 0, 0, 0
         Button:
-            text: '5'
-            font_size: 20
+            text: "7"
+            on_press: entry.text += self.text
         Button:
-            text: '6'
-            font_size: 20
+            text: "8"
+            on_press: entry.text += self.text
         Button:
-            text: '7'
-            font_size: 20
+            text: "9"
+            on_press: entry.text += self.text
         Button:
-            text: 'Deduct points'
-            font_size: 20
+            text: "+"
+            on_press: entry.text += self.text
         Button:
-            text: 'Points Counter'
-            font_size: 20
-     
+            text: "4"
+            on_press: entry.text += self.text
+        Button:
+            text: "5"
+            on_press: entry.text += self.text
+        Button:
+            text: "6"
+            on_press: entry.text += self.text
+        Button:
+            text: "-"
+            on_press: entry.text += self.text
+        Button:
+            text: "1"
+            on_press: entry.text += self.text
+        Button:
+            text: "2"
+            on_press: entry.text += self.text
+        Button:
+            text: "3"
+            on_press: entry.text += self.text
+        Button:
+            text: "*"
+            on_press: entry.text += self.text
+        Button:
+            text: "AC"
+            on_press: entry.text = ""
+        Button:
+            text: "0"
+            on_press: entry.text += self.text
+        Button:
+            text: "="
+            def calculate(self, calculation):
+        if calculation:
+            try:
+                # Solve formula and display it in entry
+                # which is pointed at by display
+                self.display.text = str(eval(calculation))
+            except Exception:
+                self.display.text = "Error"
+
+            on_press: calculator.calculate(entry.text)
+            
+            
+        Button:
+            text: "/"
+            on_press: entry.text += self.text
+
 """)
 
 
@@ -84,13 +144,20 @@ class RewardsScreen(Screen):
     pass
 
 
+class AddSubScreen(Screen):
+    pass
+
+
+class CalcGridLayoutScreen(Screen):
+    pass
 
 # Create the screen manager
 sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
 sm.add_widget(ScanQRCodeScreen(name='scanQRcode'))
-
+sm.add_widget(AddSubScreen(name='addsubpoints'))
 sm.add_widget(RewardsScreen(name='rewards'))
+sm.add_widget(CalcGridLayoutScreen(name='calculate'))
 
 
 class TestApp(App):
@@ -101,3 +168,32 @@ class TestApp(App):
 
 if __name__ == '__main__':
     TestApp().run()
+"""
+< RewardsScreen >:
+GridLayout:
+cols: 3
+rows: 3
+font_size: 20
+Button:
+text: '1'
+font_size: 20
+
+Button:
+text: '2'
+font_size: 20
+Button:
+text: '3'
+font_size: 20
+Button:
+text: '4'
+font_size: 20
+Button:
+text: '5'
+font_size: 20
+Button:
+text: '6'
+font_size: 20
+Button:
+text: '7'
+font_size: 20     
+"""
