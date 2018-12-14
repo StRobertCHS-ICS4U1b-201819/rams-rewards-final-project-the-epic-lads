@@ -38,7 +38,7 @@ Builder.load_string("""
             text: 'Back to menu'
             on_press: root.manager.current = 'menu'
 <QRPicScreen>:
-
+    
 """)
 
 
