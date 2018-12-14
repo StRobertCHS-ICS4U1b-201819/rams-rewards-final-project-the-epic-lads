@@ -32,6 +32,7 @@ Window.clearcolor = (0, 0.75, 1, 1)
 Builder.load_string("""
 <MenuScreen>:
     FloatLayout:
+        
         Button:
             background_color: 0, 0, 0, 0
             size_hint: (1, 1.5)
@@ -65,14 +66,70 @@ Builder.load_string("""
 
 <LeoScreen>:
     GridLayout:
-        cols: 2
-        rows: 1
+        cols:3
+        rows:4
+        
         Button:
-            text: 'no u'
-            on_press: root.manager.current = 'settings'
+            text: 'Join a club (5 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
         Button:
-            text: 'Back to menu'
-            on_press: root.manager.current = 'menu'
+            text: 'Make it in a athletic team (10 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+
+        Button:
+            text: 'Attend a club/team meeting (1 point)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+            
+        Button:
+            text: 'Donate $5 for school charity events (once per event) (3 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+            
+        Button:
+            text: 'Place top 3 in cafeteria kahoot games (3 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+        
+        Button:
+            text: 'Participate in the Terry Fox turkey trot (5 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+        Button:
+            text: 'Achieve a unit test mark of 85+ (2 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+
+        Button:
+            text: 'Achieve a course mark of 80 (4 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+        
+        Button:
+            text: 'Achieve a course mark of 90 (5 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+        
+        Button:
+            text: 'Achieve a course mark of 95+ (6 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+            
+        Button:
+            text: 'Deduct points'
+            font_size: 20
 """)
 
 
