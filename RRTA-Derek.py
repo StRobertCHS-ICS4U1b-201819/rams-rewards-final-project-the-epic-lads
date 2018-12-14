@@ -31,25 +31,24 @@ Window.clearcolor = (0, 0.75, 1, 1)
 # property manager that gives you the instance of the ScreenManager used.
 Builder.load_string("""
 <MenuScreen>:
-    FloatLayout:
-        
-        Button:
-            background_color: 0, 0, 0, 0
-            size_hint: (1, 1.5)
-            text: 'Rams Rewards Teacher Admin App'
-            font_size: 32
-        
-        Button:
-            size_hint: (1.5, 0.5)
-            text: 'Quit'
-            font_size: 20
-            on_press: app.stop() 
-            
-        Button:
-            size_hint: (0.5, 0.5)
-            text: 'Scan QR Code'
-            font_size: 20
-            on_press: root.manager.current = 'settings'
+    GridLayout:
+        rows: 2
+        BoxLayout:
+            padding: 10
+            Button:
+                background_color: 0, 0, 250, 255
+                font_size: 32
+                text: 'Rams Rewards'
+        BoxLayout:
+            spacing: 10
+            padding: 10
+            Button: 
+                text: 'Scan QR Code'
+                on_press: root.manager.current = 'settings'
+            Button:
+                text: "Exit"
+                on_press: app.stop() 
+
             
 
 <SettingsScreen>:
@@ -66,9 +65,19 @@ Builder.load_string("""
 
 <LeoScreen>:
     GridLayout:
-        cols:3
-        rows:4
-        
+        cols: 3
+        rows: 5
+        spacing: 5
+        padding: 5
+        Button:
+            background_color: 0,0,0,0
+            text: 'Points'
+            font_size: 50
+            color: 0,0,0,0
+        Button:
+            background_color: 0,0,0,0        
+        Button:
+            background_color: 0,0,0,0
         Button:
             text: 'Join a club (5 points)'
             padding: 25,0
@@ -130,6 +139,12 @@ Builder.load_string("""
         Button:
             text: 'Deduct points'
             font_size: 20
+        
+        Button:
+            text: 'Quit'
+            font_size: 20
+            on_press: app.stop()         
+        
 """)
 
 
