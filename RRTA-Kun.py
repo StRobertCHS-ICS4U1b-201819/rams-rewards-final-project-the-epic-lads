@@ -57,11 +57,6 @@ class MenuScreen(Screen):
 class ScanQRCodeScreen(Screen):
     pass
 
-
-class FullImage(Image):
-    pass
-
-
 class QrPicScreen(Screen):
     pass
 
