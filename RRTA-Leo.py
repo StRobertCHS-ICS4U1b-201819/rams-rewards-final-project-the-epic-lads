@@ -39,95 +39,73 @@ Builder.load_string("""
             on_press: root.manager.current = 'calculate'
         Button:
             text: "Deduct Points"
-            on_press: root.manager.current = 'subtract'
 
 <CalcGridLayoutScreen>:
-    # Where input is displayed
-    BoxLayout:
-        id: calculator
-        display: entry
-        rows: 5
-        padding: 10
-        spacing: 10
-   
-    BoxLayout:
-        TextInput:
-            id: entry
-            font_size: 32
-            multiline: False
- 
-    # When buttons are pressed update the entry
     GridLayout:
-        rows: 5
-        cols: 4
-        spacing: 5
-        Button:
-            background_color: 0, 0, 0, 0
-        Button:
-            background_color: 0, 0, 0, 0
-        Button:
-            background_color: 0, 0, 0, 0
-        Button:
-            background_color: 0, 0, 0, 0
-        Button:
-            text: "7"
-            on_press: entry.text += self.text
-        Button:
-            text: "8"
-            on_press: entry.text += self.text
-        Button:
-            text: "9"
-            on_press: entry.text += self.text
-        Button:
-            text: "+"
-            on_press: entry.text += self.text
-        Button:
-            text: "4"
-            on_press: entry.text += self.text
-        Button:
-            text: "5"
-            on_press: entry.text += self.text
-        Button:
-            text: "6"
-            on_press: entry.text += self.text
-        Button:
-            text: "-"
-            on_press: entry.text += self.text
-        Button:
-            text: "1"
-            on_press: entry.text += self.text
-        Button:
-            text: "2"
-            on_press: entry.text += self.text
-        Button:
-            text: "3"
-            on_press: entry.text += self.text
-        Button:
-            text: "*"
-            on_press: entry.text += self.text
-        Button:
-            text: "AC"
-            on_press: entry.text = ""
-        Button:
-            text: "0"
-            on_press: entry.text += self.text
-        Button:
-            text: "="
-            def calculate(self, calculation):
-        if calculation:
-            try:
-                # Solve formula and display it in entry
-                # which is pointed at by display
-                self.display.text = str(eval(calculation))
-            except Exception:
-                self.display.text = "Error"
+        cols:3
+        rows:4
 
-            on_press: calculator.calculate(entry.text)
-            
-            
         Button:
-            text: "/"
-            on_press: entry.text += self.text
+            text: 'Join a club (5 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+        Button:
+            text: 'Make it in a athletic team (10 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+
+        Button:
+            text: 'Attend a club/team meeting (1 point)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+
+        Button:
+            text: 'Donate $5 for school charity events (once per event) (3 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+
+        Button:
+            text: 'Place top 3 in cafeteria kahoot games (3 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+
+        Button:
+            text: 'Participate in the Terry Fox turkey trot (5 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+        Button:
+            text: 'Achieve a unit test mark of 85+ (2 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+
+        Button:
+            text: 'Achieve a course mark of 80 (4 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+
+        Button:
+            text: 'Achieve a course mark of 90 (5 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+
+        Button:
+            text: 'Achieve a course mark of 95+ (6 points)'
+            padding: 25,0
+            text_size: 250,None
+            font_size: 20
+
+        Button:
+            text: 'Deduct points'
+            font_size: 20
 
 """)
 
