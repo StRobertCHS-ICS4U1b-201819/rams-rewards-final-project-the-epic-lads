@@ -1,41 +1,43 @@
-import kivy
-kivy.require('1.10.1')
-
 from kivy.app import App
-from kivy.uix.button import Label
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
 
-class Student(object):
+# Create both screens. Please note the root.manager.current: this is how
+# you can control the ScreenManager from kv. Each screen has by default a
+# property manager that gives you the instance of the ScreenManager used.
+Builder.load_string("""
+<MainScreen>:
+    BoxLayout:
+        Button:
+            text: 'Check information'
+            on_press: root.manager.current = 'view'
+        Button:
+            text: 'Quit'
 
-    def __init__(self):
-        self.points = 0
-        self.firstname = ''
-        self.middlename = ''
-        self.lastname = ''
-        self.homeroom = ''
-        self.studentID = 0
+<InformationScreen>:
+    BoxLayout:
+        Button:
+            text: 'Back'
+            on_press: root.manager.current = 'main'
+""")
 
-    def set_name(self, fname, mname, lname):
-        self.firstname = fname
-        self.middlename = mname
-        self.lastname = lname
+# Declare both screens
+class MainScreen(Screen):
+    pass
 
-    def add_points(self, Points):
-        holder = self.points + Points
-        self.points = holder
+class InformationScreen(Screen):
+    pass
 
-    def set_homeroom(self, hroom):
-        self.homeroom = hroom
+# Create the screen manager
+sm = ScreenManager()
+sm.add_widget(MainScreen(name='main'))
+sm.add_widget(InformationScreen(name='view'))
 
-    def set_studentID(self, sID):
-        self.studentID = sID
+class TestApp(App):
 
-
-class RRSA(App):
     def build(self):
-        return Label(text="RRSA")
+        return sm
 
-runapp = RRSA()
-
-runapp.run()
-
+if __name__ == '__main__':
+    TestApp().run()
 
