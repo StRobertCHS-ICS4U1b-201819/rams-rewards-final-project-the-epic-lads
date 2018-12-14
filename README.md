@@ -22,6 +22,3 @@ Website for Rams Rewards administrators.  RR Admins will be able to:
 * Manage list of student accounts (add accounts, remove accounts, edit info)
 * View history of rewards activity.
 * View charts of rewards activity (by date, by activity)
-
-
-𝕀𝕟𝕧𝕚𝕥𝕖 𝕥𝕠 𝕥𝕙𝕖 𝔻𝕚𝕤𝕔𝕠𝕣𝕕: https://discord.gg/NCytcfU
