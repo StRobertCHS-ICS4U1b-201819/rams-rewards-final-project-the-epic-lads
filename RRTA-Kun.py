@@ -14,18 +14,22 @@ Builder.load_string("""
 <MenuScreen>:
     GridLayout:
         rows: 2
-        padding: 27
-        spacing: 27
-        
         BoxLayout:
+            padding: 10
             Button:
-                text: 'RAMS'
-            Button:
+                background_color: 0, 0, 250, 255
+                font_size: 32
+                text: 'Rams Rewards'
+        BoxLayout:
+            spacing: 10
+            padding: 10
+            Button: 
                 text: 'Scan QR Code'
                 on_press: root.manager.current = 'scanQRcode'
             Button:
                 text: "Exit"
                 on_press: app.stop() 
+
 <ScanQRCodeScreen>:
     GridLayout:
         cols: 2
