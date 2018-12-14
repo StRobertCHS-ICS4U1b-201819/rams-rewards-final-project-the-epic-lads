@@ -23,6 +23,7 @@ grApp.run()
 
 from kivy.app import App
 from kivy.lang import Builder
+from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 Window.clearcolor = (0, 0.75, 1, 1)
@@ -75,7 +76,8 @@ Builder.load_string("""
             text: 'Points'
             font_size: 50
             color: 0,0,0,0
-        TextInput:  
+        TextInput: 
+            input_filter: 'int'
             background_color: 0,0,0,0
             outline_color: 0,0,0,0
             id: entry
@@ -87,6 +89,7 @@ Builder.load_string("""
             padding: 25,0
             text_size: 250,None
             font_size: 20
+            on_press: entry.int += 5
         Button:
             text: 'Make it in a athletic team (10 points)'
             padding: 25,0
@@ -164,7 +167,6 @@ class SettingsScreen(Screen):
 
 
 class LeoScreen(Screen):
-
     def points(self, adding):
         if adding:
                 self.display.text = str(eval(adding))
