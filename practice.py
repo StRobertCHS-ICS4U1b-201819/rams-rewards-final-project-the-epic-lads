@@ -2,12 +2,12 @@ import kivy
 kivy.require('1.9.0')
 
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
+from kivy.uix.stacklayout import StackLayout
 
-class GridLayoutApp(App):
+class StackLayoutApp(App):
 
     def build(self):
-        return GridLayout()
+        return StackLayout()
 
-glApp = GridLayoutApp()
+glApp = StackLayoutApp()
 glApp.run()
