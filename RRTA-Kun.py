@@ -3,9 +3,8 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.uix.image import Image
+
 Window.clearcolor = (1, 1, 1, 1)
-
-
 
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
@@ -20,6 +19,7 @@ Builder.load_string("""
                 background_color: 0, 0, 250, 255
                 font_size: 32
                 text: 'Rams Rewards'
+                on_press: root.manager.current = "menu"
         BoxLayout:
             spacing: 10
             padding: 10
@@ -29,7 +29,6 @@ Builder.load_string("""
             Button:
                 text: "Exit"
                 on_press: app.stop() 
-
 <ScanQRCodeScreen>:
     GridLayout:
         cols: 2
@@ -43,7 +42,7 @@ Builder.load_string("""
             text: 'Back to menu'
             on_press: root.manager.current = 'menu'
 <QRPicScreen>:
-    
+
 """)
 
 
@@ -57,8 +56,10 @@ class MenuScreen(Screen):
 class ScanQRCodeScreen(Screen):
     pass
 
+
 class QrPicScreen(Screen):
     pass
+
 
 # Create the screen manager
 sm = ScreenManager()
