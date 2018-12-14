@@ -64,6 +64,7 @@ Builder.load_string("""
 
 
 <LeoScreen>:
+    display: entry
     GridLayout:
         cols: 3
         rows: 5
@@ -74,8 +75,11 @@ Builder.load_string("""
             text: 'Points'
             font_size: 50
             color: 0,0,0,0
-        Button:
-            background_color: 0,0,0,0        
+        TextInput:  
+            background_color: 0,0,0,0
+            outline_color: 0,0,0,0
+            id: entry
+            font_size: 40   
         Button:
             background_color: 0,0,0,0
         Button:
@@ -160,7 +164,12 @@ class SettingsScreen(Screen):
 
 
 class LeoScreen(Screen):
-    pass
+
+    def points(self, adding):
+        if adding:
+                self.display.text = str(eval(adding))
+
+
 
 
 # Create the screen manager
