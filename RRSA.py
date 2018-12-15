@@ -5,13 +5,23 @@ from kivy.properties import StringProperty
 from kivy.uix.listview import ListItemButton
 from kivy.uix.textinput import TextInput
 
+student = {
+    "firstName": "",
+    "middleName": "",
+    "lastName": "",
+    "studentID":"",
+    "homeRoom": ""
+    
+
+}
+
 Builder.load_string("""
+#: import student __main__.student
 <MainScreen>:
     BoxLayout:
-        id: fname
         orientation: 'vertical'
         Button:
-            text: 'Check information'
+            text: 'Check information '
             on_press: root.manager.current = 'view'
         Button:
             text: 'Update Information'
@@ -55,18 +65,20 @@ Builder.load_string("""
             on_press: root.goto_main()
 
 <InformationScreen>:
+    on_enter:
+        root.on_start()
     BoxLayout:
-        orientation: 'vertical'
+        orientation: 'vertical' 
         Label: 
-            text: 'Firstname: '
+            text: 'Firstname: ' + root.first_name
         Label:
-            text: 'Middlename: '
+            text: 'Middlename: ' + root.middle_name
         Label: 
-            text: 'Lastname: '
+            text: 'Lastname: ' + root.last_name
         Label: 
-            text: 'Student ID: '
+            text: 'Student ID: ' + root.student_ID
         Label: 
-            text: 'Homeroom: '
+            text: 'Homeroom: ' + root.home_room
         Label: 
             text: 'Reward Points: '
         Button:
@@ -91,10 +103,27 @@ class MainScreen(Screen):
     pass
 
 class InformationScreen(Screen):
-    pass
+    first_name = StringProperty(student["firstName"])
+    middle_name = StringProperty(student["middleName"])
+    last_name = StringProperty(student["lastName"])
+    home_room = StringProperty(student["homeRoom"])
+    student_ID = StringProperty(student["studentID"])
+    def on_start(self, *args):
+        self.first_name = student["firstName"]
+        self.middle_name = student["middleName"]
+        self.last_name = student["lastName"]
+        self.home_room = student["homeRoom"]
+        self.student_ID = student["studentID"]
+        print(student["firstName"])
 
 class UpdateScreen(Screen):
     def goto_main(self, *args):
+        student["firstName"] = self.ids.fname.text
+        student["middleName"] = self.ids.mname.text
+        student["lastName"] = self.ids.lname.text
+        student["studentID"] = self.ids.SID.text
+        student["homeRoom"] = self.ids.hroom.text
+        print(student["firstName"])
         self.manager.current = 'main'
 
 class QRScreen(Screen):
