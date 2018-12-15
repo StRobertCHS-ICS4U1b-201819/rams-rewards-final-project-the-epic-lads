@@ -25,11 +25,7 @@ Builder.load_string("""
             text: 'Quit'
             on_press: App.get_running_app().stop() 
 
-<InformationScreen>:
-    BoxLayout:
-        Button:
-            text: 'Return'
-            on_press: root.manager.current = 'main'
+
 
 <UpdateScreen>:
     BoxLayout:
@@ -56,6 +52,25 @@ Builder.load_string("""
             id: hroom
         Button:
             text: 'Save and Return'
+            on_press: root.manager.current = 'main'
+
+<InformationScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label: 
+            text: 'Firstname: '
+        Label:
+            text: 'Middlename: '
+        Label: 
+            text: 'Lastname: '
+        Label: 
+            text: 'Student ID: '
+        Label: 
+            text: 'Homeroom: '
+        Label: 
+            text: 'Reward Points: '
+        Button:
+            text: 'Return'
             on_press: root.manager.current = 'main'
 
 <QRScreen>:
