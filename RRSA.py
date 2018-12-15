@@ -4,19 +4,19 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import StringProperty
 from kivy.uix.listview import ListItemButton
 from kivy.uix.textinput import TextInput
-
+from kivy.core.image import Image as CoreImage
+import qrcode
 student = {
     "firstName": "",
     "middleName": "",
     "lastName": "",
     "studentID":"",
     "homeRoom": ""
-    
-
 }
 
+
+
 Builder.load_string("""
-#: import student __main__.student
 <MainScreen>:
     BoxLayout:
         orientation: 'vertical'
@@ -90,12 +90,15 @@ Builder.load_string("""
         Button:
             text: 'Return'
             on_press: root.manager.current = 'main'
+        Image:
+            source: 'image.jpg'
 
 <HistoryScreen>:
     BoxLayout:
         Button:
             text: 'Return'
             on_press: root.manager.current = 'main'
+        
 """)
 
 
@@ -127,7 +130,16 @@ class UpdateScreen(Screen):
         self.manager.current = 'main'
 
 class QRScreen(Screen):
-    pass
+    KQR = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=4,
+    )
+    KQR.add_data(student["studentID"])
+    KQR.make(fit=True)
+    img = KQR.make_image(fill_color="black", back_color="white")
+    img.save("image.jpg")
 
 class HistoryScreen(Screen):
     pass
