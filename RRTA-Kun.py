@@ -52,6 +52,8 @@ Builder.load_string("""
         padding: 10
 
         BoxLayout:
+            Button: 
+                text: 'Current Points:'
             TextInput:
                 id: entry
                 font_size: 32
