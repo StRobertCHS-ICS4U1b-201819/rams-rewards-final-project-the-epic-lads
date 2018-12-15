@@ -1,9 +1,14 @@
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import ObjectProperty
+from kivy.uix.listview import ListItemButton
+from kivy.uix.textinput import TextInput
+
 Builder.load_string("""
 <MainScreen>:
     BoxLayout:
+        orientation: 'vertical'
         Button:
             text: 'Check information'
             on_press: root.manager.current = 'view'
@@ -23,25 +28,46 @@ Builder.load_string("""
 <InformationScreen>:
     BoxLayout:
         Button:
-            text: 'Back'
+            text: 'Return'
             on_press: root.manager.current = 'main'
 
 <UpdateScreen>:
     BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Firstname:" + fname.text
+        TextInput: 
+            id: fname
+        Label:
+            text: "Middle name:" + mname.text
+        TextInput:
+            id: mname
+        Label:
+            text: "Last name:" + lname.text
+        TextInput:
+            id: lname
+        Label:
+            text: "Student ID:" + SID.text
+        TextInput:
+            id: SID
+        Label:
+            text: "Homeroom:" + hroom.text
+        TextInput:
+            id: hroom
         Button:
-            text: 'Back'
+            text: 'Save and Return'
             on_press: root.manager.current = 'main'
 
 <QRScreen>:
     BoxLayout:
         Button:
-            text: 'Back'
+            text: 'Return'
             on_press: root.manager.current = 'main'
 
 <HistoryScreen>:
     BoxLayout:
         Button:
-            text: 'Back'
+            text: 'Return'
             on_press: root.manager.current = 'main'
 """)
 
