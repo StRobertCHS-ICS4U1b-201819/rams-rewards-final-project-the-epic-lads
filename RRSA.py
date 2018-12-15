@@ -152,7 +152,6 @@ sm.add_widget(QRScreen(name='qr'))
 sm.add_widget(HistoryScreen(name='history'))
 
 class TestApp(App):
-    #firstname = StringProperty('XXX')
     def build(self):
         return sm
 
