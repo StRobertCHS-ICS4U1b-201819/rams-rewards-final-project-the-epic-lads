@@ -57,6 +57,11 @@ Builder.load_string("""
         BoxLayout:
             Button: 
                 text: 'Current Points:'
+                background_color: 0,0,0,0
+                font_color: 0,0,0,0
+                font_size: 28
+                size_hint_x: 0.35
+                width: 100
             TextInput:
                 id: entry
                 font_size: 32
