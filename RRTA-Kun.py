@@ -128,10 +128,11 @@ Builder.load_string("""
                 text: 'Deduct pts (-1 pts)'
                 font_size: 12
                 on_press: entry.text = str(eval(entry.text + '- 1'))
+                
             Button:
-                text: 'Quit'
+                text: 'Quit and save points'
                 font_size: 12
-                on_press: app.stop()
+                on_press: root.manager.current = 'menu'
 """)
 
 # Declare screens
