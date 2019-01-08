@@ -1,32 +1,15 @@
-# Choose from a list of rewards activities (activities will have predetermined point values) to rewards points for
-# (i.e Coding Club meeting, attend a basketball game, attend a dance.
-"""
-import kivy
-
-kivy.require('1.10.0')
-
-from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-
-
-
-class GridLayoutApp(App):
-
-    def build(self):
-        return GridLayout()
-
-
-grApp = GridLayoutApp()
-
-grApp.run()
-"""
-
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
-Window.clearcolor = (0, 0.75, 1, 1)
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.boxlayout import BoxLayout
+from kivy.properties import ObjectProperty
+from kivy.uix.listview import ListItemButton
+from kivy.uix.image import Image
+
+Window.clearcolor = (0, 0.7, 1, 1)
+
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
@@ -40,145 +23,137 @@ Builder.load_string("""
                 background_color: 0, 0, 250, 255
                 font_size: 32
                 text: 'Rams Rewards'
+                on_press: root.manager.current = "menu"
         BoxLayout:
             spacing: 10
             padding: 10
             Button: 
                 text: 'Scan QR Code'
-                on_press: root.manager.current = 'settings'
+                on_press: root.manager.current = 'scanQRcode'
             Button:
                 text: "Exit"
                 on_press: app.stop() 
-
-            
-
-<SettingsScreen>:
+<ScanQRCodeScreen>:
     GridLayout:
         cols: 2
         rows: 1
+        padding: 27
+        spacing: 27
         Button:
-            text: 'My settings button'
-            on_press: root.manager.current = 'leo'
+            text: 'Reward Your Students'
+            on_press: root.manager.current = 'rewarding'
         Button:
             text: 'Back to menu'
             on_press: root.manager.current = 'menu'
 
-
-<LeoScreen>:
-    display: entry
+<RewardingScreen>:
     GridLayout:
-        cols: 3
-        rows: 5
-        spacing: 5
-        padding: 5
-        Button:
-            background_color: 0,0,0,0
-            text: 'Points'
-            font_size: 50
-            color: 0,0,0,0
-        TextInput: 
-            input_filter: 'int'
-            background_color: 0,0,0,0
-            outline_color: 0,0,0,0
-            id: entry
-            font_size: 40   
-        Button:
-            background_color: 0,0,0,0
-        Button:
-            text: 'Join a club (5 points)'
-            padding: 25,0
-            text_size: 250,None
-            font_size: 20
-            on_press: entry.int += 5
-        Button:
-            text: 'Make it in a athletic team (10 points)'
-            padding: 25,0
-            text_size: 250,None
-            font_size: 20
+        id: rewarding
+        display: entry
+        rows: 4
+        spacing: 10
+        padding: 10
 
-        Button:
-            text: 'Attend a club/team meeting (1 point)'
-            padding: 25,0
-            text_size: 250,None
-            font_size: 20
-            
-        Button:
-            text: 'Donate $5 for school charity events (once per event) (3 points)'
-            padding: 25,0
-            text_size: 250,None
-            font_size: 20
-            
-        Button:
-            text: 'Place top 3 in cafeteria kahoot games (3 points)'
-            padding: 25,0
-            text_size: 250,None
-            font_size: 20
-        
-        Button:
-            text: 'Participate in the Terry Fox turkey trot (5 points)'
-            padding: 25,0
-            text_size: 250,None
-            font_size: 20
-        Button:
-            text: 'Achieve a unit test mark of 85+ (2 points)'
-            padding: 25,0
-            text_size: 250,None
-            font_size: 20
+        BoxLayout:
+            Button: 
+                text: 'Current Points:'
+                background_color: 0,0,0,0
+                font_color: 0,0,0,0
+                font_size: 28
+                size_hint_x: 0.35
+                width: 100
+            TextInput:
+                id: entry
+                font_size: 32
+                multiline: False
+                readonly: True
 
-        Button:
-            text: 'Achieve a course mark of 80 (4 points)'
-            padding: 25,0
-            text_size: 250,None
-            font_size: 20
-        
-        Button:
-            text: 'Achieve a course mark of 90 (5 points)'
-            padding: 25,0
-            text_size: 250,None
-            font_size: 20
-        
-        Button:
-            text: 'Achieve a course mark of 95+ (6 points)'
-            padding: 25,0
-            text_size: 250,None
-            font_size: 20
-            
-        Button:
-            text: 'Deduct points'
-            font_size: 20
-        
-        Button:
-            text: 'Quit'
-            font_size: 20
-            on_press: app.stop()         
-        
+        BoxLayout:
+            spacing: 10
+            Button:
+                text: "Join a Club (5 pts)"
+                padding: 25,0
+                font_size: 12
+                on_press: entry.text = str(eval(entry.text + '+ 5'))
+
+            Button:
+                text: 'Join Athletic Team (10 pts)'
+                padding: 25,0
+                font_size: 12
+                on_press: entry.text = str(eval(entry.text + '+ 10'))
+            Button:
+                text: 'Attend a club/team meeting (1 pts)'
+                padding: 25,0
+                font_size: 11
+                on_press: entry.text = str(eval(entry.text + '+ 1'))
+            Button:
+                text: 'Donate $5 for school (3 points)'
+                padding: 25,0
+                font_size: 12
+                on_press: entry.text = str(eval(entry.text + '+ 3'))
+        BoxLayout:
+            spacing: 10
+            Button:
+                text: 'Top 3 in cafeteria Kahoot (3 pts)'
+                padding: 25,0
+                font_size: 12
+                on_press: entry.text = str(eval(entry.text + '+ 3'))
+            Button:
+                text: 'Participate Terry Fox Trot (5 pts)'
+                padding: 25, 0
+                font_size: 12
+                on_press: entry.text = str(eval(entry.text + '+ 5'))
+            Button:
+                text: 'Unit Test Mark: 85+ (2 pts)'
+                padding: 25,0
+                font_size: 12
+                on_press: entry.text = str(eval(entry.text + '+ 2'))
+            Button:
+                text: 'Course Mark: 80+(4 pts)'
+                padding: 25,0
+                font_size: 12
+                on_press: entry.text = str(eval(entry.text + '+ 4'))
+        BoxLayout:
+            spacing: 10
+            Button:
+                text: 'Course Mark: 90+ (5 pts)'
+                padding: 25,0
+                font_size: 12
+                on_press: entry.text = str(eval(entry.text + '+ 5'))
+            Button:
+                text: 'Course Mark: 95+ (6 pts)'
+                padding: 25,0
+                font_size: 12
+                on_press: entry.text = str(eval(entry.text + '+ 6'))
+            Button:
+                text: 'Deduct pts (-1 pts)'
+                font_size: 12
+                on_press: entry.text = str(eval(entry.text + '- 1'))
+            Button:
+                text: 'Quit'
+                font_size: 12
+                on_press: root.manager.current = 'scanQRcode'
 """)
 
 
-# Declare both screens
-
-
+# Declare screens
 class MenuScreen(Screen):
     pass
 
 
-class SettingsScreen(Screen):
+class ScanQRCodeScreen(Screen):
     pass
 
 
-class LeoScreen(Screen):
-    def points(self, adding):
-        if adding:
-                self.display.text = str(eval(adding))
-
-
+class RewardingScreen(Screen):
+    pass
 
 
 # Create the screen manager
 sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
-sm.add_widget(SettingsScreen(name='settings'))
-sm.add_widget(LeoScreen(name='leo'))
+sm.add_widget(ScanQRCodeScreen(name='scanQRcode'))
+sm.add_widget(RewardingScreen(name='rewarding'))
 
 
 class TestApp(App):
