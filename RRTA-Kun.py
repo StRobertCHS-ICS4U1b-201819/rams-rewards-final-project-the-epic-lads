@@ -45,7 +45,6 @@ Builder.load_string("""
         Button:
             text: 'Back to menu'
             on_press: root.manager.current = 'menu'
-
 <RewardingScreen>:
     GridLayout:
         id: rewarding
@@ -53,7 +52,6 @@ Builder.load_string("""
         rows: 4
         spacing: 10
         padding: 10
-
         BoxLayout:
             Button: 
                 text: 'Current Points:'
@@ -66,7 +64,7 @@ Builder.load_string("""
                 id: entry
                 font_size: 32
                 multiline: False
-
+                readonly: True
         BoxLayout:
             spacing: 10
             Button:
@@ -74,7 +72,6 @@ Builder.load_string("""
                 padding: 25,0
                 font_size: 12
                 on_press: entry.text = str(eval(entry.text + '+ 5'))
-                
             Button:
                 text: 'Join Athletic Team (10 pts)'
                 padding: 25,0
@@ -128,12 +125,13 @@ Builder.load_string("""
                 text: 'Deduct pts (-1 pts)'
                 font_size: 12
                 on_press: entry.text = str(eval(entry.text + '- 1'))
-                
             Button:
-                text: 'Quit and save points'
+                text: 'Save and Quit'
                 font_size: 12
-                on_press: root.manager.current = 'menu'
+                on_press: entry.text = str(0)
+                on_press: root.manager.current = 'scanQRcode'
 """)
+
 
 # Declare screens
 class MenuScreen(Screen):
@@ -147,11 +145,13 @@ class ScanQRCodeScreen(Screen):
 class RewardingScreen(Screen):
     pass
 
+
 # Create the screen manager
 sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
 sm.add_widget(ScanQRCodeScreen(name='scanQRcode'))
 sm.add_widget(RewardingScreen(name='rewarding'))
+
 
 class TestApp(App):
 
