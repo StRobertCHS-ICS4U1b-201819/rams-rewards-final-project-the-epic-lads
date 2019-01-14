@@ -130,8 +130,9 @@ Builder.load_string("""
                 font_size: 12
                 on_press: entry.text = str(eval(entry.text + '- 1'))
             Button:
-                text: 'Quit'
+                text: 'Save and Quit'
                 font_size: 12
+                on_press: entry.text = str(0)
                 on_press: root.manager.current = 'scanQRcode'
 """)
 
