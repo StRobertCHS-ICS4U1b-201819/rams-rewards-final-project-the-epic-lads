@@ -4,9 +4,11 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import ObjectProperty
 from kivy.uix.listview import ListItemButton
 from kivy.uix.image import Image
+from kivy.properties import NumericProperty
 from QRcodeScanner import Scanner
 
 Window.clearcolor = (0, 0.7, 1, 1)
@@ -33,6 +35,15 @@ Builder.load_string("""
             Button:
                 text: "Exit"
                 on_press: app.stop() 
+    FloatLayout:
+        Image:
+            source: 'logo.png'
+            pos: 250, 150
+        Image:
+            source: 'logo.png'
+            pos: -250, 150
+
+                    
 <ScanQRCodeScreen>:
     GridLayout:
         cols: 2
@@ -147,6 +158,8 @@ class RewardingScreen(Screen):
     pass
 
 
+
+
 # Create the screen manager
 sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
@@ -155,7 +168,6 @@ sm.add_widget(RewardingScreen(name='rewarding'))
 
 
 class TestApp(App):
-
     def build(self):
         return sm
 
