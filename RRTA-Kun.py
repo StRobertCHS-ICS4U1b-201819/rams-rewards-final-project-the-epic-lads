@@ -141,7 +141,25 @@ Builder.load_string("""
                 text: 'Save and Quit'
                 font_size: 12
                 on_press: entry.text = str(0)
+                on_press: root.manager.current = 'areyousure'
+<AreYouSureScreen>:
+    GridLayout:
+        rows: 2
+        BoxLayout:
+            padding: 10
+            Button:
+                background_color: 250, 0, 0, 25
+                font_size: 32
+                text: 'Are you sure about that?'
+        BoxLayout:
+            spacing: 10
+            padding: 10
+            Button: 
+                text: 'Yes'
                 on_press: root.manager.current = 'scanQRcode'
+            Button:
+                text: "No"
+                on_press: root.manager.current = 'rewarding' 
 """)
 
 
@@ -157,7 +175,8 @@ class ScanQRCodeScreen(Screen):
 class RewardingScreen(Screen):
     pass
 
-
+class AreYouSureScreen(Screen):
+    pass
 
 
 # Create the screen manager
@@ -165,7 +184,7 @@ sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
 sm.add_widget(ScanQRCodeScreen(name='scanQRcode'))
 sm.add_widget(RewardingScreen(name='rewarding'))
-
+sm.add_widget(AreYouSureScreen(name= 'areyousure'))
 
 class TestApp(App):
     def build(self):
