@@ -7,6 +7,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
 from kivy.uix.listview import ListItemButton
 from kivy.uix.image import Image
+from QRcodeScanner import Scanner
 
 Window.clearcolor = (0, 0.7, 1, 1)
 
@@ -23,7 +24,6 @@ Builder.load_string("""
                 background_color: 0, 0, 250, 255
                 font_size: 32
                 text: 'Rams Rewards'
-                on_press: root.manager.current = "menu"
         BoxLayout:
             spacing: 10
             padding: 10
@@ -125,6 +125,7 @@ Builder.load_string("""
                 text: 'Deduct pts (-1 pts)'
                 font_size: 12
                 on_press: entry.text = str(eval(entry.text + '- 1'))
+           
             Button:
                 text: 'Save and Quit'
                 font_size: 12
