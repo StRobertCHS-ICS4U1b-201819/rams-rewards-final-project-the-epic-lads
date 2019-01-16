@@ -46,6 +46,7 @@ Builder.load_string("""
                 text: 'Rams Rewards'
                 font_name: "QuickSand"
                 bold: True
+                on_press: 
               
         BoxLayout:
             Button: 
@@ -80,6 +81,9 @@ Builder.load_string("""
         Image:
             source: 'scan.png'
             pos: -300, -75
+        Image:
+            source: 'exit.png'
+            pos: 0, -227
                     
 <ScanQRCodeScreen>:
     GridLayout:
