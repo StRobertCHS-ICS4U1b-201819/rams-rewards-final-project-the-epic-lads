@@ -40,7 +40,7 @@ Builder.load_string("""
                 
         BoxLayout:
             Button:
-                background_color: 255, 0, 0, 255
+                background_color: 3, .9, .85, .85
                 size_hint: 1, .90
                 font_size: 32
                 text: 'Rams Rewards'
@@ -49,17 +49,16 @@ Builder.load_string("""
               
         BoxLayout:
             Button: 
-                background_color: 1, .3, .4, .85
+                background_color: 2, .9, 1, .85
                 text: 'Scan QR Code'
                 font_size: 32
-                halign: 'center'
                 on_press: root.manager.current = 'scanQRcode'
                 font_name: "QuickSand"
                 bold: True
                 
         BoxLayout:
             Button:
-                background_color: 1, .3, .4, .85
+                background_color: 2, .9, .85, .85
                 font_size: 32
                 text: "Exit"
                 on_press: app.stop() 
