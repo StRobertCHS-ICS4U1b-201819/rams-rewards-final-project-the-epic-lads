@@ -26,10 +26,11 @@ LabelBase.register(name = "QuickSand",
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
 Builder.load_string("""
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
 <MenuScreen>:
     GridLayout:
         rows: 4
-        padding: 0
         
         BoxLayout:
             Label:
@@ -46,7 +47,7 @@ Builder.load_string("""
                 text: 'Rams Rewards'
                 font_name: "QuickSand"
                 bold: True
-                on_press: 
+                on_press: root.manager.current = "studentList"
               
         BoxLayout:
             Button: 
@@ -183,6 +184,7 @@ Builder.load_string("""
                 font_size: 12
                 on_press: entry.text = str(0)
                 on_press: root.manager.current = 'areyousure'
+                
 <AreYouSureScreen>:
     GridLayout:
         rows: 2
@@ -201,17 +203,58 @@ Builder.load_string("""
             Button:
                 text: "No"
                 on_press: root.manager.current = 'rewarding' 
-""")
 
+<StudentListScreen>:
+    orientation: "vertical"
+    first_name_text_input: first_name
+    last_name_text_input: last_name
+    student_list: students_list_view
+    padding: 10
+    spacing: 10
+ 
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
+ 
+        Label:
+            text: "First Name"
+        TextInput:
+            id: first_name
+        Label:
+            text: "Last Name"
+        TextInput:
+            id: last_name
+ 
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
+        Button:
+            text: "Submit"
+            size_hint_x: 15
+            on_press: root.submit_student()
+        Button:
+            text: "Delete"
+            size_hint_x: 15
+            on_press: root.delete_student()
+        Button:
+            text: "Replace"
+            size_hint_x: 15
+            on_press: root.replace_student()
+ 
+    # Define starting data and point to the ListItemButton
+    # in the Python code
+    ListView:
+        id: students_list_view
+        adapter:
+            ListAdapter(data=["Doug Smith"], cls=main.StudentListButton)
+""")
 
 # Declare screens
 class MenuScreen(Screen):
     pass
 
-
 class ScanQRCodeScreen(Screen):
     pass
-
 
 class RewardingScreen(Screen):
     pass
@@ -219,6 +262,8 @@ class RewardingScreen(Screen):
 class AreYouSureScreen(Screen):
     pass
 
+class StudentListScreen(Screen):
+    pass
 
 # Create the screen manager
 sm = ScreenManager()
@@ -226,11 +271,11 @@ sm.add_widget(MenuScreen(name='menu'))
 sm.add_widget(ScanQRCodeScreen(name='scanQRcode'))
 sm.add_widget(RewardingScreen(name='rewarding'))
 sm.add_widget(AreYouSureScreen(name= 'areyousure'))
+sm.add_widget(StudentListScreen(name= 'studentList'))
 
 class TestApp(App):
     def build(self):
         return sm
-
 
 if __name__ == '__main__':
     TestApp().run()
