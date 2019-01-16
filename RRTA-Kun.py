@@ -49,7 +49,7 @@ Builder.load_string("""
               
         BoxLayout:
             Button: 
-                background_color: 2, .9, 1, .85
+                background_color: 2.2, .9, .85, .85
                 text: 'Scan QR Code'
                 font_size: 32
                 on_press: root.manager.current = 'scanQRcode'
@@ -58,7 +58,7 @@ Builder.load_string("""
                 
         BoxLayout:
             Button:
-                background_color: 2, .9, .85, .85
+                background_color: 1.8, .9, .85, .85
                 font_size: 32
                 text: "Exit"
                 on_press: app.stop() 
