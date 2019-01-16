@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
+from kivy.core.text import LabelBase
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
@@ -11,38 +12,72 @@ from kivy.uix.image import Image
 from kivy.properties import NumericProperty
 from QRcodeScanner import Scanner
 
-Window.clearcolor = (0, 0.7, 1, 1)
-
+Window.clearcolor = (1, 1, 1, 1)
+LabelBase.register(name = "KaushanSans",
+    fn_regular =  "KaushanScript-Regular.otf"
+    )
+LabelBase.register(name = "QuickSand",
+    fn_regular = "Quicksand-Regular.otf",
+    fn_bold = "Quicksand-Bold.otf",
+    fn_bolditalic= "Quicksand-BoldItalic.otf",
+    fn_italic= "Quicksand-Italic.otf"
+    )
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
 Builder.load_string("""
 <MenuScreen>:
     GridLayout:
-        rows: 2
+        rows: 4
+        padding: 0
+        
         BoxLayout:
-            padding: 10
+            Label:
+                text: 'Rams Rewards'
+                font_size: 60
+                color: 0,0,0,1
+                font_name: "KaushanSans"
+                
+        BoxLayout:
             Button:
-                background_color: 0, 0, 250, 255
+                background_color: 255, 0, 0, 255
+                size_hint: 1, .90
                 font_size: 32
                 text: 'Rams Rewards'
+                font_name: "QuickSand"
+                bold: True
+              
         BoxLayout:
-            spacing: 10
-            padding: 10
             Button: 
+                background_color: 1, .3, .4, .85
                 text: 'Scan QR Code'
+                font_size: 32
+                halign: 'center'
                 on_press: root.manager.current = 'scanQRcode'
+                font_name: "QuickSand"
+                bold: True
+                
+        BoxLayout:
             Button:
+                background_color: 1, .3, .4, .85
+                font_size: 32
                 text: "Exit"
                 on_press: app.stop() 
+                font_name: "QuickSand"
+                bold: True
+                
     FloatLayout:
         Image:
             source: 'logo.png'
-            pos: 250, 150
+            pos: -300, 220
+            size: 10, 10
         Image:
-            source: 'logo.png'
-            pos: -250, 150
-
+            source: 'ecoschool.png'
+            pos: 300, 220
+            size: 10, 10
+        Image:
+            source: 'rewards.png'
+            pos: -300, 70
                     
 <ScanQRCodeScreen>:
     GridLayout:
