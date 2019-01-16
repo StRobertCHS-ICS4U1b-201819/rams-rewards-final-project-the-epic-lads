@@ -77,6 +77,9 @@ Builder.load_string("""
         Image:
             source: 'rewards.png'
             pos: -300, 70
+        Image:
+            source: 'scan.png'
+            pos: -300, -75
                     
 <ScanQRCodeScreen>:
     GridLayout:
