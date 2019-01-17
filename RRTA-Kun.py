@@ -12,6 +12,7 @@ from kivy.uix.image import Image
 from kivy.properties import NumericProperty
 from QRcodeScanner import Scanner
 
+
 Window.clearcolor = (1, 1, 1, 1)
 LabelBase.register(name = "KaushanSans",
     fn_regular =  "KaushanScript-Regular.otf"
@@ -22,12 +23,11 @@ LabelBase.register(name = "QuickSand",
     fn_bolditalic= "Quicksand-BoldItalic.otf",
     fn_italic= "Quicksand-Italic.otf"
     )
+
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
 Builder.load_string("""
-#: import ListAdapter kivy.adapters.listadapter.ListAdapter
-#: import ListItemButton kivy.uix.listview.ListItemButton
 <MenuScreen>:
     GridLayout:
         rows: 4
@@ -109,7 +109,7 @@ Builder.load_string("""
             Button: 
                 text: 'Current Points:'
                 background_color: 0,0,0,0
-                font_color: 0,0,0,0
+                color: 0,0,0,0
                 font_size: 28
                 size_hint_x: 0.35
                 width: 100
@@ -203,50 +203,45 @@ Builder.load_string("""
             Button:
                 text: "No"
                 on_press: root.manager.current = 'rewarding' 
-
+            
 <StudentListScreen>:
     orientation: "vertical"
-    first_name_text_input: first_name
-    last_name_text_input: last_name
-    student_list: students_list_view
     padding: 10
     spacing: 10
- 
-    BoxLayout:
-        size_hint_y: None
-        height: "40dp"
- 
-        Label:
-            text: "First Name"
-        TextInput:
-            id: first_name
-        Label:
-            text: "Last Name"
-        TextInput:
-            id: last_name
- 
-    BoxLayout:
-        size_hint_y: None
-        height: "40dp"
-        Button:
-            text: "Submit"
-            size_hint_x: 15
-            on_press: root.submit_student()
-        Button:
-            text: "Delete"
-            size_hint_x: 15
-            on_press: root.delete_student()
-        Button:
-            text: "Replace"
-            size_hint_x: 15
-            on_press: root.replace_student()
- 
-    # Define starting data and point to the ListItemButton
-    # in the Python code
-    ListView:
-        id: students_list_view
-        adapter:
-            ListAdapter(data=["Doug Smith"], cls=main.StudentListButton)
+    
+    GridLayout:
+        rows: 4
+        spacing: 10
+        padding: 10
+        BoxLayout:
+            Label: 
+                text: 'Last Name:'
+                font_size: 28
+                size_hint_z: 0.35
+                width: 100
+                color: 0,0,0,1
+                font_name: "KaushanSans"
+            TextInput:
+                id: last_name
+                font_size: 32
+                multiline: False
+            Label: 
+                text: 'First Name:'
+                font_size: 28
+                size_hint_z: 0.35
+                width: 100
+                color: 0,0,0,1
+                font_name: "KaushanSans"
+            TextInput:
+                id: first_name
+                font_size: 32
+                multiline: False
+        
+                
+                
+
+     
+                
 """)
 
 # Declare screens
@@ -264,6 +259,7 @@ class AreYouSureScreen(Screen):
 
 class StudentListScreen(Screen):
     pass
+
 
 # Create the screen manager
 sm = ScreenManager()
