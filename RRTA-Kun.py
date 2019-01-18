@@ -212,7 +212,6 @@ Builder.load_string("""
     spacing: 10
     first_name_text_input: first_name
     last_name_text_input: last_name
-    student_list: students_list_view
     GridLayout:
         rows: 4
         spacing: 10
@@ -263,10 +262,6 @@ Builder.load_string("""
             Button:
                 text: 'Back to menu'
                 on_press: root.manager.current = 'menu'      
-    ListView:
-        id: students_list_view
-        adapter:
-            ListAdapter(data=["Kun Lee"], cls= main.StudentListButton)
 """)
 class StudentListButton(ListItemButton):
     pass
