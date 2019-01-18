@@ -255,13 +255,9 @@ Builder.load_string("""
                 on_press: 
         BoxLayout:
         BoxLayout:
-            
-                
-                
-                
-
-     
-                
+            Button:
+                text: 'Back to menu'
+                on_press: root.manager.current = 'menu'      
 """)
 
 # Declare screens
@@ -280,6 +276,29 @@ class AreYouSureScreen(Screen):
 class StudentListScreen(Screen):
     pass
 
+class StudentDB(BoxLayout):
+    first_name_text_input = ObjectProperty()
+    last_name_text_input = ObjectProperty()
+    student_list = ObjectProperty()
+
+    def submit_student(self):
+        student_name = self.first_name_text_input.text + " " + self.last_name_text_input.text
+        self.student_list.adapter.data.extend([student_name])
+        self.student_list._trigger_reset_populate()
+
+    def delete_student(self, *args):
+        if self.student_list.adapter.selection:
+            selection = self.student_list.adapter.selection[0].text
+            self.student_list.adapter.data.remove(selection)
+            self.student_list._trigger_reset_populate()
+
+    def replace_student(self, *args):
+        if self.student_list.adapter.selection:
+            selection = self.student_list.adapter.selection[0].text
+            self.student_list.adapter.data.remove(selection)
+            student_name = self.first_name_text_input.text + " " + self.last_name_text_input.text
+            self.student_list.adapter.data.extend([student_name])
+            self.student_list._trigger_reset_populate()
 
 # Create the screen manager
 sm = ScreenManager()
