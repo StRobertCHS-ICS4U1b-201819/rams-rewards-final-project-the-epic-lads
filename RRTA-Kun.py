@@ -203,11 +203,16 @@ Builder.load_string("""
             Button:
                 text: "No"
                 on_press: root.manager.current = 'rewarding' 
-            
+                
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton     
 <StudentListScreen>:
     orientation: "vertical"
     padding: 10
     spacing: 10
+    first_name_text_input: first_name
+    last_name_text_input: last_name
+    student_list: students_list_view
     GridLayout:
         rows: 4
         spacing: 10
@@ -241,7 +246,7 @@ Builder.load_string("""
                 background_color: .5,0.5,0.5,1
                 text: 'Submit'
                 font_size: 32
-                on_press: 
+                on_press: root.submit_student()
             Button:
                 background_color: .5,0.5,0.5,1
                 text: 'Delete'
@@ -258,8 +263,13 @@ Builder.load_string("""
             Button:
                 text: 'Back to menu'
                 on_press: root.manager.current = 'menu'      
+    ListView:
+        id: students_list_view
+        adapter:
+            ListAdapter(data=["Kun Lee"], cls= main.StudentListButton)
 """)
-
+class StudentListButton(ListItemButton):
+    pass
 # Declare screens
 class MenuScreen(Screen):
     pass
@@ -274,31 +284,20 @@ class AreYouSureScreen(Screen):
     pass
 
 class StudentListScreen(Screen):
-    pass
 
-class StudentDB(BoxLayout):
     first_name_text_input = ObjectProperty()
     last_name_text_input = ObjectProperty()
     student_list = ObjectProperty()
 
     def submit_student(self):
+        # Get the student name from the TextInputs
         student_name = self.first_name_text_input.text + " " + self.last_name_text_input.text
+
+        # Add the student to the ListView
         self.student_list.adapter.data.extend([student_name])
+
+        # Reset the ListView
         self.student_list._trigger_reset_populate()
-
-    def delete_student(self, *args):
-        if self.student_list.adapter.selection:
-            selection = self.student_list.adapter.selection[0].text
-            self.student_list.adapter.data.remove(selection)
-            self.student_list._trigger_reset_populate()
-
-    def replace_student(self, *args):
-        if self.student_list.adapter.selection:
-            selection = self.student_list.adapter.selection[0].text
-            self.student_list.adapter.data.remove(selection)
-            student_name = self.first_name_text_input.text + " " + self.last_name_text_input.text
-            self.student_list.adapter.data.extend([student_name])
-            self.student_list._trigger_reset_populate()
 
 # Create the screen manager
 sm = ScreenManager()
