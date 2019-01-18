@@ -208,7 +208,6 @@ Builder.load_string("""
     orientation: "vertical"
     padding: 10
     spacing: 10
-    
     GridLayout:
         rows: 4
         spacing: 10
@@ -237,6 +236,27 @@ Builder.load_string("""
                 font_size: 32
                 multiline: False
         
+        BoxLayout:
+            Button:
+                background_color: .5,0.5,0.5,1
+                text: 'Submit'
+                font_size: 32
+                on_press: 
+            Button:
+                background_color: .5,0.5,0.5,1
+                text: 'Delete'
+                font_size: 32
+                on_press:
+            Button:
+                background_color: .5,0.5,0.5,1
+                text: 'Replace'
+                font_size: 32
+                minimum_height: 0
+                on_press: 
+        BoxLayout:
+        BoxLayout:
+            
+                
                 
                 
 
