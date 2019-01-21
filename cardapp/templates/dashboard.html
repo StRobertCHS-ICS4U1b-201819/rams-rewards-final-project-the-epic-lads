@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% load qr_code %}
+<div class="col-xs-12 col-sm-4 col-sm-offset-4 login-box">
+      <div class="login-header">
+        <img class="avatar" src="{{ auth0User.extra_data.picture }}"/>
+        <h3 class="mdc-typography--headline4">@ {{ user.first_name }}</h3>
+        <h3 class="mdc-typography--headline5" style="color:gray">Good morning</h3>
+      </div>
+        <hr>
+        <a
+          type="button"
+          id="Reflash"
+          class="mdc-button btn btn-default btn-block">
+          <i class="material-icons mdc-button__icon" aria-hidden="true">center_focus_strong</i>
+            Reflash QR-code
+        </a>
+        <br>
+        <img class="qrcode center" src="https://api.qrserver.com/v1/create-qr-code/?data={{ userdata }}&amp;size=500x500" alt="" title="" />
+        <hr>
+        <a
+          type="button"
+          id="qsLogoutBtn"
+          class="mdc-button btn btn-logout btn-block"
+          href="/login/auth0">
+          <i class="material-icons mdc-button__icon" aria-hidden="true">exit_to_app</i>
+            Log Out
+        </a>
+      </form>
+      <div class="term-div">
+        <h4 class="term mdc-typography--subtitle2">
+        Copyright (c) 2019 Digital Student Card<br>All rights reserved<br>
+        </h4>
+      </div>
+    </div>
+<!--div class="login-header">
+        <img class="avatar" src="{{ auth0User.extra_data.picture }}"/><br><br>
+        <h3 class="mdc-typography--headline1 title">{{ user.first_name }}</h3>
+        <hr>
+        <img class="qrcode" src="https://api.qrserver.com/v1/create-qr-code/?data={{ userdata }}&amp;size=500x500" alt="" title="" />
+    </div>
+</div-->
+{% endblock content %}

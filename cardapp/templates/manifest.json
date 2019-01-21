@@ -1,0 +1,14 @@
+{
+    "name": "Digital Student Card",
+    "short_name": "Student Card",
+    "lang": "en",
+    "start_url": "/dashboard",
+    "display": "standalone",
+    "theme_color": "#fff",
+    "icons": [
+      {
+        "src": "https://material.io/tools/icons/static/ic_icons_192px_light.svg",
+        "type": "image/svg"
+      }
+    ]
+  }
