@@ -3,6 +3,9 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
+from kivy.uix.popup import Popup
+from kivy.uix.button import Button
+
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
@@ -29,6 +32,7 @@ LabelBase.register(name = "QuickSand",
 # property manager that gives you the instance of the ScreenManager used.
 Builder.load_string("""
 <MenuScreen>:
+#: import main RRTA-Kun 
     GridLayout:
         rows: 4
         
@@ -98,7 +102,26 @@ Builder.load_string("""
         Button:
             text: 'Back to menu'
             on_press: root.manager.current = 'menu'
+        
 <RewardingScreen>:
+    id: main
+    popup:   my_popup
+    
+    Popup:
+        id: my_popup
+        title:     "Title"
+    
+        BoxLayout:
+            orientation: "vertical"
+            
+            Label:
+                text: "Message"
+            
+            Button:
+                size_hint:  (1, 0.2)
+                text:       "Dismiss"
+                on_release: my_popup.dismiss()
+
     GridLayout:
         id: rewarding
         display: entry
@@ -183,8 +206,9 @@ Builder.load_string("""
                 text: 'Save and Quit'
                 font_size: 12
                 on_press: entry.text = str(0)
-                on_press: root.manager.current = 'areyousure'
-                
+                on_release: root.popup.open()
+
+               
 <AreYouSureScreen>:
     GridLayout:
         rows: 2
@@ -203,7 +227,7 @@ Builder.load_string("""
             Button:
                 text: "No"
                 on_press: root.manager.current = 'rewarding' 
-#: import main RRTA-Kun     
+                          
 #: import ListAdapter kivy.adapters.listadapter.ListAdapter
 #: import ListItemButton kivy.uix.listview.ListItemButton     
 <StudentListScreen>:
@@ -283,9 +307,6 @@ class RewardingScreen(Screen):
 class AreYouSureScreen(Screen):
     pass
 
-class StudentListButton(ListItemButton):
-    pass
-
 class StudentListScreen(Screen):
     first_name_text_input = ObjectProperty()
     first_name_text_input = ObjectProperty()
@@ -331,6 +352,10 @@ class StudentListScreen(Screen):
 
             # Reset the ListView
             self.student_list._trigger_reset_populate()
+
+#other classes
+class StudentListButton(ListItemButton):
+    pass
 
 
 
