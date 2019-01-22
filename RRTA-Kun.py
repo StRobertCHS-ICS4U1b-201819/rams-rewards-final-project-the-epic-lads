@@ -252,6 +252,11 @@ Builder.load_string("""
                 size_hint_x: 15
                 background_color: .5,0.5,0.5,1
                 on_press: root.replace_student()
+            Button:
+                text: 'Back to menu'
+                size_hint_x: 15
+                background_color: .5,0.5,0.5,1
+                on_press: root.manager.current = 'menu'
     
         ListView:
             id: students_list_view
