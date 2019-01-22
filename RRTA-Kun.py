@@ -241,12 +241,12 @@ Builder.load_string("""
                 text: "Submit"
                 size_hint_x: 15
                 background_color: .5,0.5,0.5,1
-                on_press: root.submit_student()
+                on_press: root.submit_students()
             Button:
                 text: "Delete"
                 size_hint_x: 15
                 background_color: .5,0.5,0.5,1
-                on_press: root.delete_student()
+                on_press: root.delete_students()
             Button:
                 text: "Replace"
                 size_hint_x: 15
@@ -290,10 +290,37 @@ class StudentListScreen(Screen):
 
         # Reset the ListView
         self.student_list._trigger_reset_populate()
+
     def delete_students(self):
-        pass
+        # If a list item is selected
+        if self.student_list.adapter.selection:
+            # Get the text from the item selected
+            selection = self.student_list.adapter.selection[0].text
+
+            # Remove the matching item
+            self.student_list.adapter.data.remove(selection)
+
+            # Reset the ListView
+            self.student_list._trigger_reset_populate()
+
     def replace_student(self):
-        pass
+
+        # If a list item is selected
+        if self.student_list.adapter.selection:
+            # Get the text from the item selected
+            selection = self.student_list.adapter.selection[0].text
+
+            # Remove the matching item
+            self.student_list.adapter.data.remove(selection)
+
+            # Get the student name from the TextInputs
+            student_name = self.first_name_text_input.text + " " + self.last_name_text_input.text
+
+            # Add the updated data to the list
+            self.student_list.adapter.data.extend([student_name])
+
+            # Reset the ListView
+            self.student_list._trigger_reset_populate()
 
 
 
