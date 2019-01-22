@@ -23,6 +23,7 @@ from kivy.properties import NumericProperty
 from QRcodeScanner import Scanner
 
 Window.clearcolor = (1, 1, 1, 1)
+# Register fonts so the app looks nicer
 LabelBase.register(name="KaushanSans",
                    fn_regular="KaushanScript-Regular.otf"
                    )
@@ -33,9 +34,7 @@ LabelBase.register(name="QuickSand",
                    fn_italic="Quicksand-Italic.otf"
                    )
 
-# Create both screens. Please note the root.manager.current: this is how
-# you can control the ScreenManager from kv. Each screen has by default a
-# property manager that gives you the instance of the ScreenManager used.
+# Use Builder to build a Kivy file in Python for simplicity and convenience
 Builder.load_string("""
 <MenuScreen>:
     GridLayout:
