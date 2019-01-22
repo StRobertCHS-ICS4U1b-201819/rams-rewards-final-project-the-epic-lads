@@ -1,3 +1,12 @@
+"""
+--------------------------------
+Name: RRTA.py
+Purpose:
+This file ocntains the Teacher App of the Rams Rewards System.
+Author: Lee.K, Shat.D, Xiao.L
+Created: 9/12/18
+--------------------------------
+"""
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -104,23 +113,6 @@ Builder.load_string("""
             on_press: root.manager.current = 'menu'
         
 <RewardingScreen>:
-    id: main
-    popup:   my_popup
-    
-    Popup:
-        id: my_popup
-        title:     "Title"
-    
-        BoxLayout:
-            orientation: "vertical"
-            
-            Label:
-                text: "Message"
-            
-            Button:
-                size_hint:  (1, 0.2)
-                text:       "Dismiss"
-                on_release: my_popup.dismiss()
 
     GridLayout:
         id: rewarding
@@ -206,7 +198,7 @@ Builder.load_string("""
                 text: 'Save and Quit'
                 font_size: 12
                 on_press: entry.text = str(0)
-                on_release: root.popup.open()
+                on_release: root.manager.current = 'areyousure'
 
                
 <AreYouSureScreen>:
@@ -257,7 +249,7 @@ Builder.load_string("""
                 font_name: "KaushanSans"
             TextInput:
                 id: last_name
-                                
+                                     
         BoxLayout:
             size_hint_y: None
             height: "40dp"
