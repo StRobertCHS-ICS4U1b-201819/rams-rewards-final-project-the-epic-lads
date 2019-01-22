@@ -11,15 +11,30 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import StringProperty
+from kivy.core.window import Window
+from kivy.core.text import LabelBase
+import qrcode
 from kivy.uix.listview import ListItemButton
 from kivy.uix.textinput import TextInput
 from kivy.core.image import Image as CoreImage
-import qrcode
 import requests as req
 import re
 import datetime
 from datetime import datetime
 from kivy.uix.listview import ListItemButton
+
+
+Window.clearcolor = (0, 0, 0, 1)
+LabelBase.register(name = "KaushanSans",
+    fn_regular =  "KaushanScript-Regular.otf"
+    )
+LabelBase.register(name = "QuickSand",
+    fn_regular = "Quicksand-Regular.otf",
+    fn_bold = "Quicksand-Bold.otf",
+    fn_bolditalic= "Quicksand-BoldItalic.otf",
+    fn_italic= "Quicksand-Italic.otf"
+    )
+
 
 pytime = str(datetime.now())
 datelist = []
@@ -49,76 +64,209 @@ def make_Image():
 # Kivy will be built in the python file since it is more convenient that way
 Builder.load_string("""
 <MainScreen>:
-    BoxLayout:
-        orientation: 'vertical'
+    GridLayout:
+        rows: 4
+        cols: 2
+        
         Button:
+         
+        Button:
+
+        Button:
+            background_color: 3, .9, .85, .85
+            size_hint: 1, .90
+            font_size: 32
+            bold: True      
             text: 'Check information '
+            font_name: "QuickSand"
             on_press: root.manager.current = 'view'
+     
         Button:
+            background_color: 3, .9, .85, .85
+            font_size: 32
+            bold: True
             text: 'Update Information'
+            font_name: "QuickSand"
             on_press: root.manager.current = 'update'
+     
         Button:
+            background_color: 2.2, .9, .85, .85
+
             text: 'View QR Code'
+            font_name: "QuickSand"
+
+            font_size: 32
+            bold: True
             on_press: root.manager.current = 'qr'
+       
         Button:
+            background_color: 2.2, .9, .85, .85
+
             text: 'View History'
+            font_name: "QuickSand"
+
+            font_size: 32
+            bold: True
             on_press: root.manager.current = 'history'
+            
+        FloatLayout:
+            
+            Button:
+                pos: 0,0
+                size_hint_x: 2
+                text: 'Quit'
+                font_name: "QuickSand"
+    
+                font_size: 32
+                bold: True
+                on_press: app.stop()
+            
+    FloatLayout:
         Button:
-            text: 'Quit'
-            on_press: App.get_running_app().stop() 
-
-
+            readonly: True
+            pos: 0,450
+            background_color: 10, 10, 10, 10
+            size_hint: 1, .26
+            text: 'Rams Rewards'
+            font_name: "KaushanSans"
+            color: 0, 0, 0, 1
+            font_size: 64
+    
+    FloatLayout:
+        Image:
+            source: 'logo.png'
+            pos: -300, 240
+            size: 10, 10
+        Image:
+            source: 'ecoschool.png'
+            pos: 300, 240
+            size: 10, 10
+        
+        Image:
+            source: 'exit.png'
+            pos: 0, -227
+            
 <UpdateScreen>:
     on_leave:
         root.on_quit()
-    BoxLayout:
+    GridLayout:
+        color: 0,0,0,0
+
+        rows: 6
+        cols: 2
+        
         orientation: 'vertical'
-        Label:
-            text: "Firstname:" + fname.text 
+        Button:
+            text: "First name:"
+            background_color: 3, .9, .85, .85
+            font_size: 24
+
         TextInput: 
+            size_hint_x: 0.35
+            width: 100
             id: fname
-        Label:
-            text: "Middle name:" + mname.text
+
+
+        Button:
+            text: "Middle name:"
+            background_color: 3, .9, .85, .85
+            font_size: 24
+            
         TextInput:
             id: mname
-        Label:
-            text: "Last name:" + lname.text
+            
+        Button:
+            text: "Last name:"
+            background_color: 3, .9, .85, .85
+            font_size: 24
+            
         TextInput:
             id: lname
-        Label:
-            text: "Student ID:" + SID.text
+            
+        Button:
+            text: "Student ID:"
+            background_color: 2.2, .9, .85, .85
+            font_size: 24
+            
         TextInput:
             id: SID
-        Label:
-            text: "Homeroom:" + hroom.text
+            
+        Button:
+            text: "Homeroom:"
+            background_color: 2.2, .9, .85, .85
+            font_size: 24
+            
         TextInput:
             id: hroom
-        Button:
-            text: 'Save and Return'
-            on_press: root.goto_main()
-
+            
+        FloatLayout:    
+            Button:
+                size_hint_x: 2
+                text: 'Save and Return'
+                font_size: 24
+                on_press: root.goto_main()
 
 <InformationScreen>:
+    
     on_enter:
         root.on_start()
-    BoxLayout:
-        orientation: 'vertical' 
+        
+    GridLayout:
+        rows: 7
+        cols: 2
+
         Label: 
-            text: 'Firstname: ' + root.first_name
+            text: 'First name: ' + root.first_name
+            font_size: 24
+        
+        Label: 
+            text: ' '
+            
         Label:
-            text: 'Middlename: ' + root.middle_name
+            text: '  Middle name: ' + root.middle_name
+            font_size: 24
+  
         Label: 
-            text: 'Lastname: ' + root.last_name
+            text: ' '
+            
+        Label: 
+            text: 'Last name: ' + root.last_name
+            font_size: 24
+            
+        Label: 
+            text: ' '
+            
         Label: 
             text: 'Student ID: ' + root.student_ID
+            font_size: 24
+        
+        Label: 
+            text: ' '
+            
         Label: 
             text: 'Homeroom: ' + root.home_room
+            font_size: 24
+        
         Label: 
+            text: ' '
+            
+        Label: 
+            readonly: True
             text: 'Reward Points: '
-        Button:
-            text: 'Return'
-            on_press: root.manager.current = 'main'
-
+            font_size: 24
+        
+        Label: 
+            text: ' '
+            
+        FloatLayout:    
+            Button:
+                text: 'Return'
+                font_size: 24
+                size_hint_x:2
+                color: 1,1,1,1
+                bold: True
+                background_color: 1, 1, 1, 1
+                on_press: root.manager.current = 'main'
 <QRScreen>:
     on_enter:
         root.on_QR()
@@ -126,11 +274,10 @@ Builder.load_string("""
         orientation: 'vertical'
         Button:
             text: 'Return'
+            font_size: 24
             on_press: root.manager.current = 'main'
         Image:
             source: 'image.jpg'
-
-
 <HistoryScreen>:
     on_enter:
         root.on_history()
@@ -139,6 +286,7 @@ Builder.load_string("""
             text: 'History:\\n' + root.history
         Button:
             text: 'Return'
+            font_size: 24
             on_press: root.manager.current = 'main'
 
 """)
@@ -213,4 +361,3 @@ class TestApp(App):
 
 if __name__ == '__main__':
     TestApp().run()
-
