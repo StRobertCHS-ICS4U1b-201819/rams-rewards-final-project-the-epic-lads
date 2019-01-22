@@ -109,7 +109,7 @@ Builder.load_string("""
             Button: 
                 text: 'Current Points:'
                 background_color: 0,0,0,0
-                color: 0,0,0,0
+                color: 0,0,0,1
                 font_size: 28
                 size_hint_x: 0.35
                 width: 100
@@ -252,6 +252,11 @@ Builder.load_string("""
                 size_hint_x: 15
                 background_color: .5,0.5,0.5,1
                 on_press: root.replace_student()
+            Button:
+                text: "Reward"
+                size_hint_x: 15
+                background_color: .5,0.5,0.5,1
+                on_press: root.manager.current = 'rewarding'
             Button:
                 text: 'Back to menu'
                 size_hint_x: 15
