@@ -203,65 +203,60 @@ Builder.load_string("""
             Button:
                 text: "No"
                 on_press: root.manager.current = 'rewarding' 
-                
+#: import main RRTA-Kun     
 #: import ListAdapter kivy.adapters.listadapter.ListAdapter
 #: import ListItemButton kivy.uix.listview.ListItemButton     
 <StudentListScreen>:
     orientation: "vertical"
-    padding: 10
-    spacing: 10
     first_name_text_input: first_name
     last_name_text_input: last_name
+    student_list: students_list_view
+    
     GridLayout:
         rows: 4
         spacing: 10
         padding: 10
+        
         BoxLayout:
-            Label: 
-                text: 'Last Name:'
-                font_size: 28
-                size_hint_z: 0.35
-                width: 100
-                color: 0,0,0,1
-                font_name: "KaushanSans"
-            TextInput:
-                id: last_name
-                font_size: 32
-                multiline: False
-            Label: 
-                text: 'First Name:'
-                font_size: 28
-                size_hint_z: 0.35
-                width: 100
+            size_hint_y: None
+            height: "40dp"
+     
+            Label:
+                text: "First Name"
                 color: 0,0,0,1
                 font_name: "KaushanSans"
             TextInput:
                 id: first_name
-                font_size: 32
-                multiline: False
-        
+            Label:
+                text: "Last Name"
+                color: 0,0,0,1
+                font_name: "KaushanSans"
+            TextInput:
+                id: last_name
+                                
         BoxLayout:
+            size_hint_y: None
+            height: "40dp"
             Button:
+                text: "Submit"
+                size_hint_x: 15
                 background_color: .5,0.5,0.5,1
-                text: 'Submit'
-                font_size: 32
                 on_press: root.submit_student()
             Button:
+                text: "Delete"
+                size_hint_x: 15
                 background_color: .5,0.5,0.5,1
-                text: 'Delete'
-                font_size: 32
-                on_press:
+                on_press: root.delete_student()
             Button:
+                text: "Replace"
+                size_hint_x: 15
                 background_color: .5,0.5,0.5,1
-                text: 'Replace'
-                font_size: 32
-                minimum_height: 0
-                on_press: 
-        BoxLayout:
-        BoxLayout:
-            Button:
-                text: 'Back to menu'
-                on_press: root.manager.current = 'menu'      
+                on_press: root.replace_student()
+    
+        ListView:
+            id: students_list_view
+            adapter:
+                ListAdapter(data=["Kun Lee"], cls=main.StudentListButton)
 """)
 class StudentListButton(ListItemButton):
     pass
@@ -278,13 +273,15 @@ class RewardingScreen(Screen):
 class AreYouSureScreen(Screen):
     pass
 
-class StudentListScreen(Screen):
+class StudentListButton(ListItemButton):
+    pass
 
+class StudentListScreen(Screen):
     first_name_text_input = ObjectProperty()
-    last_name_text_input = ObjectProperty()
+    first_name_text_input = ObjectProperty()
     student_list = ObjectProperty()
 
-    def submit_student(self):
+    def submit_students(self):
         # Get the student name from the TextInputs
         student_name = self.first_name_text_input.text + " " + self.last_name_text_input.text
 
@@ -293,6 +290,12 @@ class StudentListScreen(Screen):
 
         # Reset the ListView
         self.student_list._trigger_reset_populate()
+    def delete_students(self):
+        pass
+    def replace_student(self):
+        pass
+
+
 
 # Create the screen manager
 sm = ScreenManager()
