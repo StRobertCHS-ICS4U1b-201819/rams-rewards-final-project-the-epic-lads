@@ -14,6 +14,7 @@ from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.popup import Popup
 from kivy.uix.button import Button
+from kivy.uix.label import Label
 
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -83,28 +84,35 @@ Builder.load_string("""
     FloatLayout:
         Image:
             source: 'logo.png'
-            pos: -300, 220
             size: 10, 10
+            size_hint_x: .25
+            size_hint_y: 1.7
         Image:
             source: 'ecoschool.png'
-            pos: 300, 220
             size: 10, 10
+            size_hint_x: 1.75
+            size_hint_y: 1.7
+            
         Image:
             source: 'rewards.png'
-            pos: -300, 70
+            size_hint_x: .25
+            size_hint_y: 1.22
         Image:
             source: 'scan.png'
-            pos: -300, -75
+            size_hint_x: .25
+            size_hint_y: .75
         Image:
             source: 'exit.png'
-            pos: 0, -227
+            size_hint_x: .98
+            size_hint_y: .25
         
         Label: 
             text: '"Knowledge is the beginning"'
             font_size: 20
             color: 0,0,0,1
             font_name: "QuickSand"
-            pos: 0,170
+            size_hint_x: 1
+            size_hint_y: 1.58
                     
 <ScanQRCodeScreen>:
     GridLayout:
@@ -119,8 +127,8 @@ Builder.load_string("""
             text: 'Back to menu'
             on_press: root.manager.current = 'menu'
         
+                
 <RewardingScreen>:
-
     GridLayout:
         id: rewarding
         display: entry
@@ -205,7 +213,7 @@ Builder.load_string("""
                 text: 'Save and Quit'
                 font_size: 12
                 on_press: entry.text = str(0)
-                on_release: root.manager.current = 'areyousure'
+                on_press: root.open_popup()
 
                
 <AreYouSureScreen>:
@@ -301,7 +309,12 @@ class ScanQRCodeScreen(Screen):
     pass
 
 class RewardingScreen(Screen):
-    pass
+    def open_popup(self):
+        the_popup = CustomPopUp(title = 'hi')
+
+        the_popup.add_widget(Label(text ='hello'))
+        the_popup.open()
+
 
 class AreYouSureScreen(Screen):
     pass
@@ -355,6 +368,10 @@ class StudentListScreen(Screen):
 #other classes
 class StudentListButton(ListItemButton):
     pass
+
+class CustomPopUp(Popup):
+    pass
+
 
 
 
