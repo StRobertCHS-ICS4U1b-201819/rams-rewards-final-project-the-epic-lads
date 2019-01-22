@@ -1,6 +1,6 @@
 """
 -------------------------------------------
-Name: RRSA.py
+Name: RRTA.py
 Purpose:
 This file contains the Teacher App of the Rams Rewards system.
 Authors: Lee.K, Xiao.L, Shat.D
