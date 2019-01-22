@@ -98,6 +98,13 @@ Builder.load_string("""
         Image:
             source: 'exit.png'
             pos: 0, -227
+        
+        Label: 
+            text: '"Knowledge is the beginning"'
+            font_size: 20
+            color: 0,0,0,1
+            font_name: "QuickSand"
+            pos: 0,170
                     
 <ScanQRCodeScreen>:
     GridLayout:
