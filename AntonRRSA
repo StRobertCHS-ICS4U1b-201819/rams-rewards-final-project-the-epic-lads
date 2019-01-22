@@ -12,7 +12,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import StringProperty
 from kivy.core.text import LabelBase
-
+import qrcode
 from kivy.uix.listview import ListItemButton
 from kivy.uix.textinput import TextInput
 from kivy.core.image import Image as CoreImage
@@ -138,29 +138,45 @@ Builder.load_string("""
 <UpdateScreen>:
     on_leave:
         root.on_quit()
-    BoxLayout:
+    GridLayout:
+        color: 0,0,0,0
+
+        rows: 6
+        cols: 2
 
         orientation: 'vertical'
-        Label:
-            text: "Firstname:" + fname.text 
+        Button:
+            text: "First name:"
+
         TextInput: 
+            size_hint_x: 0.35
+            width: 100
             id: fname
-        Label:
-            text: "Middle name:" + mname.text
+
+
+        Button:
+            text: "Middle name:"
+            
         TextInput:
             id: mname
-        Label:
-            text: "Last name:" + lname.text
+            
+        Button:
+            text: "Last name:"
         TextInput:
             id: lname
-        Label:
-            text: "Student ID:" + SID.text
+            
+        Button:
+            text: "Student ID:"
+            
         TextInput:
             id: SID
-        Label:
-            text: "Homeroom:" + hroom.text
+            
+        Button:
+            text: "Homeroom:"
+            
         TextInput:
             id: hroom
+            
         Button:
             text: 'Save and Return'
             on_press: root.goto_main()
